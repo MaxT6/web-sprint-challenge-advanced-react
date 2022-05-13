@@ -1,14 +1,18 @@
 import React, {useState} from 'react'
+import axios from 'axios';
+
+const URL = 'http://localhost:9000/api/result'
 
 export default function AppFunctional(props) {
 
   const [state, setState] = useState({
-    currentCoordinate1: 2,
-    currentCoordinate2: 2,
-    totalMoves: 0,
+    x: 2,
+    y: 2,
+    steps: 0,
     board: ['', '', '', '', 'B', '', '', '', '',],
     message: '',
-    className: "square"
+    className: "square",
+    email: " "
   })
 
   //function for changing state with left button is clicked
@@ -19,27 +23,27 @@ export default function AppFunctional(props) {
         ...state,
         board: ['B', '', '', '', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 1,
-        currentCoordinate2: 1,
-        totalMoves: state.totalMoves + 1
+        x: 1,
+        y: 1,
+        steps: state.steps + 1
       })
     } else if (state.board[2] === 'B') {
       setState({
         ...state,
         board: ['', 'B', '', '', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 1,
-        totalMoves: state.totalMoves + 1
+        x: 2,
+        y: 1,
+        steps: state.steps + 1
       })
     } else if (state.board[4] === 'B') {
       setState({
         ...state,
         board: ['', '', '', 'B', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 1,
-        currentCoordinate2: 2,
-        totalMoves: state.totalMoves + 1
+        x: 1,
+        y: 2,
+        steps: state.steps + 1
         // className: true
       })
     } else if (state.board[5] === 'B') {
@@ -47,27 +51,27 @@ export default function AppFunctional(props) {
         ...state,
         board: ['', '', '', '', 'B', '', '', '', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 2,
-        totalMoves: state.totalMoves + 1
+        x: 2,
+        y: 2,
+        steps: state.steps + 1
       })
     } else if (state.board[7] === 'B') {
       setState({
         ...state,
         board: ['', '', '', '', '', '', 'B', '', '',],
         message: '',
-        currentCoordinate1: 1,
-        currentCoordinate2: 3,
-        totalMoves: state.totalMoves + 1
+        x: 1,
+        y: 3,
+        steps: state.steps + 1
       })
     } else if (state.board[8] === 'B') {
       setState({
         ...state,
         board: ['', '', '', '', '', '', '', 'B', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 3,
-        totalMoves: state.totalMoves + 1
+        x: 2,
+        y: 3,
+        steps: state.steps + 1
       })
     } else if (
       state.board[0] === 'B' ||
@@ -89,54 +93,54 @@ export default function AppFunctional(props) {
         ...state,
         board: ['', 'B', '', '', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 1,
-        totalMoves: state.totalMoves + 1
+        x: 2,
+        y: 1,
+        steps: state.steps + 1
       })
     } else if (state.board[1] === 'B') {
       setState({
         ...state,
         board: ['', '', 'B', '', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 3,
-        currentCoordinate2: 1,
-        totalMoves: state.totalMoves + 1
+        x: 3,
+        y: 1,
+        steps: state.steps + 1
       })
     } else if (state.board[3] === 'B') {
       setState({
         ...state,
         board: ['', '', '', '', 'B', '', '', '', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 2,
-        totalMoves: state.totalMoves + 1
+        x: 2,
+        y: 2,
+        steps: state.steps + 1
       })
     } else if (state.board[4] === 'B') {
       setState({
         ...state,
         board: ['', '', '', '', '', 'B', '', '', '',],
         message: '',
-        currentCoordinate1: 3,
-        currentCoordinate2: 2,
-        totalMoves: state.totalMoves + 1
+        x: 3,
+        y: 2,
+        steps: state.steps + 1
       })
     } else if (state.board[6] === 'B') {
       setState({
         ...state,
         board: ['', '', '', '', '', '', '', 'B', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 3,
-        totalMoves: state.totalMoves + 1
+        x: 2,
+        y: 3,
+        steps: state.steps + 1
       })
     } else if (state.board[7] === 'B') {
       setState({
         ...state,
         board: ['', '', '', '', '', '', '', '', 'B',],
         message: '',
-        currentCoordinate1: 3,
-        currentCoordinate2: 3,
-        totalMoves: state.totalMoves + 1
+        x: 3,
+        y: 3,
+        steps: state.steps + 1
       })
     } else if (
       state.board[2] === 'B' ||
@@ -158,54 +162,54 @@ export default function AppFunctional(props) {
         ...state,
         board: ['B', '', '', '', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 1,
-        currentCoordinate2: 1,
-        totalMoves: state.totalMoves + 1
+        x: 1,
+        y: 1,
+        steps: state.steps + 1
       })
     } else if (state.board[4] === 'B') {
       setState({
         ...state,
         board: ['', 'B', '', '', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 1,
-        totalMoves: state.totalMoves + 1
+        x: 2,
+        y: 1,
+        steps: state.steps + 1
       })
     } else if (state.board[5] === 'B') {
       setState({
         ...state,
         board: ['', '', 'B', '', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 3,
-        currentCoordinate2: 1,
-        totalMoves: state.totalMoves + 1
+        x: 3,
+        y: 1,
+        steps: state.steps + 1
       })
     } else if (state.board[6] === 'B') {
       setState({
         ...state,
         board: ['', '', '', 'B', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 1,
-        currentCoordinate2: 2,
-        totalMoves: state.totalMoves + 1
+        x: 1,
+        y: 2,
+        steps: state.steps + 1
       })
     } else if (state.board[7] === 'B') {
       setState({
         ...state,
         board: ['', '', '', '', 'B', '', '', '', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 2,
-        totalMoves: state.totalMoves + 1
+        x: 2,
+        y: 2,
+        steps: state.steps + 1
       })
     } else if (state.board[8] === 'B') {
       setState({
         ...state,
         board: ['', '', '', '', '', 'B', '', '', '',],
         message: '',
-        currentCoordinate1: 3,
-        currentCoordinate2: 2,
-        totalMoves: state.totalMoves + 1
+        x: 3,
+        y: 2,
+        steps: state.steps + 1
       })
     } else if (
       state.board[0] === 'B' ||
@@ -227,54 +231,54 @@ export default function AppFunctional(props) {
         ...state,
         board: ['', '', '', 'B', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 1,
-        currentCoordinate2: 2,
-        totalMoves: state.totalMoves + 1
+        x: 1,
+        y: 2,
+        steps: state.steps + 1
       })
     } else if (state.board[1] === 'B') {
       setState({
         ...state,
         board: ['', '', '', '', 'B', '', '', '', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 2,
-        totalMoves: state.totalMoves + 1
+        x: 2,
+        y: 2,
+        steps: state.steps + 1
       })
     } else if (state.board[2] === 'B') {
       setState({
         ...state,
         board: ['', '', '', '', '', 'B', '', '', '',],
         message: '',
-        currentCoordinate1: 3,
-        currentCoordinate2: 2,
-        totalMoves: state.totalMoves + 1
+        x: 3,
+        y: 2,
+        steps: state.steps + 1
       })
     } else if (state.board[3] === 'B') {
       setState({
         ...state,
         board: ['', '', '', '', '', '', 'B', '', '',],
         message: '',
-        currentCoordinate1: 1,
-        currentCoordinate2: 3,
-        totalMoves: state.totalMoves + 1
+        x: 1,
+        y: 3,
+        steps: state.steps + 1
       })
     } else if (state.board[4] === 'B') {
       setState({
         ...state,
         board: ['', '', '', '', '', '', '', 'B', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 3,
-        totalMoves: state.totalMoves + 1
+        x: 2,
+        y: 3,
+        steps: state.steps + 1
       })
     } else if (state.board[5] === 'B') {
       setState({
         ...state,
         board: ['', '', '', '', '', '', '', '', 'B',],
         message: '',
-        currentCoordinate1: 3,
-        currentCoordinate2: 3,
-        totalMoves: state.totalMoves + 1
+        x: 3,
+        y: 3,
+        steps: state.steps + 1
       })
     } else if (
       state.board[6] === 'B' ||
@@ -294,19 +298,75 @@ export default function AppFunctional(props) {
       ...state,
       board: ['', '', '', '', 'B', '', '', '', '',],
       message: '',
-      currentCoordinate1: 2,
-      currentCoordinate2: 2,
-      totalMoves: 0
+      x: 2,
+      y: 2,
+      steps: 0,
+      email: '',
     })
   }  
+
+  const handleChanges = e => {
+    setState({
+      ...state,
+      // x: state.x,
+      // y: state.y,
+      // steps: state.steps,
+      email: e.target.value
+    })
+    console.log('first x', state.x)
+    console.log('first y', state.y)
+    console.log('first steps', state.steps)
+    console.log('first email', e.target.value)
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    // if(state.email === "") {
+    //   setState({
+    //     ...state,
+    //     message: "Ouch: email is required"
+    //   })
+    // } else {
+        axios.post(URL, {
+        x: state.x,
+        y: state.y,
+        steps: state.steps,
+        email: state.email,
+        })
+      .then(res => {
+      // console.log("res", res)
+        setState({
+          ...state,
+          message: res.data.message,
+          email: '',
+        })
+      })
+      .catch(err => {
+        setState({
+          ...state,
+          message: err.response.data.message
+          })
+      })
+    //}
+  }
+
+  const moveMessage = () => {
+    if(state.steps === 1) {
+      return(
+        `You moved ${state.steps} time`
+      )
+    } else {
+      return `You moved ${state.steps} times`
+    }
+  }
 
 
 
   return (
     <div id="wrapper" className={props.className}>
       <div className="info">
-          <h3 id="coordinates">{`Coordinates (${state.currentCoordinate1}, ${state.currentCoordinate2})`}</h3>
-          <h3 id="steps">{`You moved ${state.totalMoves} times`}</h3>
+          <h3 id="coordinates">{`Coordinates (${state.x}, ${state.y})`}</h3>
+          <h3 id="steps">{moveMessage(state.steps)}</h3>
         </div>
         <div id="grid">
           {state.board.map((active, idx) => { //map over state that creates the grid
@@ -355,8 +415,14 @@ export default function AppFunctional(props) {
           })}
           {/* <button id="reset">reset</button> */}
         </div>
-        <form>
-          <input id="email" type="email" placeholder="type email"></input>
+        <form onSubmit={handleSubmit}>
+          <input 
+            id="email" 
+            value={state.email}
+            type="email" 
+            placeholder="type email"
+            onChange={handleChanges}>
+            </input>
           <input id="submit" type="submit"></input>
         </form>
     </div>

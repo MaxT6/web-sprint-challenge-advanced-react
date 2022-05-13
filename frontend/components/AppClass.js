@@ -300,7 +300,8 @@ export default class AppClass extends React.Component {
       message: '',
       x: 2,
       y: 2,
-      steps: 0
+      steps: 0,
+      email: '',
     })
   }  
 
@@ -334,27 +335,47 @@ export default class AppClass extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    axios.post(URL, {
-      x: this.state.x,
-      y: this.state.y,
-      steps: this.state.steps,
-      email: this.state.email,
-    })
-    .then(res => {
+    // if(this.state.email === "") {
+    //   this.setState({
+    //     ...this.state,
+    //     message: "Ouch: email is required"
+    //   })
+    // } else{
+        axios.post(URL, {
+        x: this.state.x,
+        y: this.state.y,
+        steps: this.state.steps,
+        email: this.state.email,
+        })
+      .then(res => {
       // console.log("res", res)
       this.setState({
         ...this.state,
         message: res.data.message
+        })
       })
-    })
-    this.setState({
+      .catch(err => {
+        //console.error(err.response.data.message, "error")
+        this.setState({
+          ...this.state,
+          message: err.response.data.message
+          })
+      })
+      this.setState({
+      ...this.state,
       email: ''
-    })
+      })
+    // }
+  }
 
-    // this.submitState(e, this.state.x, this.state.y, this.state.steps, this.state.email);
-    // this.setState({
-    //   email: ''
-    // })
+  moveMessage = () => {
+    if(this.state.steps === 1) {
+      return(
+        `You moved ${this.state.steps} time`
+      )
+    } else {
+      return `You moved ${this.state.steps} times`
+    }
   }
 
   // axios submiter
@@ -388,7 +409,7 @@ export default class AppClass extends React.Component {
       <div id="wrapper" className={className}>
         <div className="info">
           <h3 id="coordinates">{`Coordinates (${this.state.x}, ${this.state.y})`}</h3>
-          <h3 id="steps">{`You moved ${this.state.steps} times`}</h3>
+          <h3 id="steps">{this.moveMessage(this.state.steps)}</h3>
         </div>
         <div id="grid">
           {this.state.board.map((active, idx) => { //map over state that creates the grid
@@ -445,7 +466,7 @@ export default class AppClass extends React.Component {
             placeholder="type email"
             onChange={this.handleChanges}>
             </input>
-          <input id="submit" type="submit" onClick={this.submitState}></input>
+          <input id="submit" type="submit"></input>
         </form>
       </div>
     )
