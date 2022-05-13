@@ -1,14 +1,18 @@
-import React from 'react'
+import React from 'react';
+import axios from 'axios';
+
+const URL = 'http://localhost:9000/api/result'
 
 export default class AppClass extends React.Component {
   //state for class App
   state = {
-    currentCoordinate1: 2,
-    currentCoordinate2: 2,
-    totalMoves: 0,
+    x: 2,
+    y: 2,
+    steps: 0,
     board: ['', '', '', '', 'B', '', '', '', '',],
     message: '',
-    className: "square"
+    className: "square",
+    email: '',
   }
 
 //function for changing state with left button is clicked
@@ -19,27 +23,27 @@ export default class AppClass extends React.Component {
         ...this.state,
         board: ['B', '', '', '', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 1,
-        currentCoordinate2: 1,
-        totalMoves: this.state.totalMoves + 1
+        x: 1,
+        y: 1,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[2] === 'B') {
       this.setState({
         ...this.state,
         board: ['', 'B', '', '', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 1,
-        totalMoves: this.state.totalMoves + 1
+        x: 2,
+        y: 1,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[4] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', '', 'B', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 1,
-        currentCoordinate2: 2,
-        totalMoves: this.state.totalMoves + 1
+        x: 1,
+        y: 2,
+        steps: this.state.steps + 1
         // className: true
       })
     } else if (this.state.board[5] === 'B') {
@@ -47,27 +51,27 @@ export default class AppClass extends React.Component {
         ...this.state,
         board: ['', '', '', '', 'B', '', '', '', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 2,
-        totalMoves: this.state.totalMoves + 1
+        x: 2,
+        y: 2,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[7] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', '', '', '', '', 'B', '', '',],
         message: '',
-        currentCoordinate1: 1,
-        currentCoordinate2: 3,
-        totalMoves: this.state.totalMoves + 1
+        x: 1,
+        y: 3,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[8] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', '', '', '', '', '', 'B', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 3,
-        totalMoves: this.state.totalMoves + 1
+        x: 2,
+        y: 3,
+        steps: this.state.steps + 1
       })
     } else if (
       this.state.board[0] === 'B' ||
@@ -89,54 +93,54 @@ export default class AppClass extends React.Component {
         ...this.state,
         board: ['', 'B', '', '', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 1,
-        totalMoves: this.state.totalMoves + 1
+        x: 2,
+        y: 1,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[1] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', 'B', '', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 3,
-        currentCoordinate2: 1,
-        totalMoves: this.state.totalMoves + 1
+        x: 3,
+        y: 1,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[3] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', '', '', 'B', '', '', '', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 2,
-        totalMoves: this.state.totalMoves + 1
+        x: 2,
+        y: 2,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[4] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', '', '', '', 'B', '', '', '',],
         message: '',
-        currentCoordinate1: 3,
-        currentCoordinate2: 2,
-        totalMoves: this.state.totalMoves + 1
+        x: 3,
+        y: 2,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[6] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', '', '', '', '', '', 'B', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 3,
-        totalMoves: this.state.totalMoves + 1
+        x: 2,
+        y: 3,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[7] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', '', '', '', '', '', '', 'B',],
         message: '',
-        currentCoordinate1: 3,
-        currentCoordinate2: 3,
-        totalMoves: this.state.totalMoves + 1
+        x: 3,
+        y: 3,
+        steps: this.state.steps + 1
       })
     } else if (
       this.state.board[2] === 'B' ||
@@ -158,54 +162,54 @@ export default class AppClass extends React.Component {
         ...this.state,
         board: ['B', '', '', '', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 1,
-        currentCoordinate2: 1,
-        totalMoves: this.state.totalMoves + 1
+        x: 1,
+        y: 1,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[4] === 'B') {
       this.setState({
         ...this.state,
         board: ['', 'B', '', '', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 1,
-        totalMoves: this.state.totalMoves + 1
+        x: 2,
+        y: 1,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[5] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', 'B', '', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 3,
-        currentCoordinate2: 1,
-        totalMoves: this.state.totalMoves + 1
+        x: 3,
+        y: 1,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[6] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', '', 'B', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 1,
-        currentCoordinate2: 2,
-        totalMoves: this.state.totalMoves + 1
+        x: 1,
+        y: 2,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[7] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', '', '', 'B', '', '', '', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 2,
-        totalMoves: this.state.totalMoves + 1
+        x: 2,
+        y: 2,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[8] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', '', '', '', 'B', '', '', '',],
         message: '',
-        currentCoordinate1: 3,
-        currentCoordinate2: 2,
-        totalMoves: this.state.totalMoves + 1
+        x: 3,
+        y: 2,
+        steps: this.state.steps + 1
       })
     } else if (
       this.state.board[0] === 'B' ||
@@ -227,54 +231,54 @@ export default class AppClass extends React.Component {
         ...this.state,
         board: ['', '', '', 'B', '', '', '', '', '',],
         message: '',
-        currentCoordinate1: 1,
-        currentCoordinate2: 2,
-        totalMoves: this.state.totalMoves + 1
+        x: 1,
+        y: 2,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[1] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', '', '', 'B', '', '', '', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 2,
-        totalMoves: this.state.totalMoves + 1
+        x: 2,
+        y: 2,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[2] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', '', '', '', 'B', '', '', '',],
         message: '',
-        currentCoordinate1: 3,
-        currentCoordinate2: 2,
-        totalMoves: this.state.totalMoves + 1
+        x: 3,
+        y: 2,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[3] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', '', '', '', '', 'B', '', '',],
         message: '',
-        currentCoordinate1: 1,
-        currentCoordinate2: 3,
-        totalMoves: this.state.totalMoves + 1
+        x: 1,
+        y: 3,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[4] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', '', '', '', '', '', 'B', '',],
         message: '',
-        currentCoordinate1: 2,
-        currentCoordinate2: 3,
-        totalMoves: this.state.totalMoves + 1
+        x: 2,
+        y: 3,
+        steps: this.state.steps + 1
       })
     } else if (this.state.board[5] === 'B') {
       this.setState({
         ...this.state,
         board: ['', '', '', '', '', '', '', '', 'B',],
         message: '',
-        currentCoordinate1: 3,
-        currentCoordinate2: 3,
-        totalMoves: this.state.totalMoves + 1
+        x: 3,
+        y: 3,
+        steps: this.state.steps + 1
       })
     } else if (
       this.state.board[6] === 'B' ||
@@ -294,40 +298,88 @@ export default class AppClass extends React.Component {
       ...this.state,
       board: ['', '', '', '', 'B', '', '', '', '',],
       message: '',
-      currentCoordinate1: 2,
-      currentCoordinate2: 2,
-      totalMoves: 0
+      x: 2,
+      y: 2,
+      steps: 0
     })
   }  
 
-  // changeClass = (val) => {
-  //   console.log("CClass", val)
-  //   if(val === 'B') {
-  //     className="square active"
-  //   } else if(val === "") {
-  //       className="square"
-  //   }
+
+  
+
+  //axios get
+  // componentDidMount() {
+  //   axios.get(URL)
+  //   .then(res => {
+  //     console.log("GET RES", res)
+  //   })
   // }
 
-//Attempting to change class. 
-//ative below is logging in nothing for blank squares and B for active square
-//can't get class to change yet
-  // consoleCheck = (active) => {
-  //   console.log('Act2', active)
+    
+
+
+  handleChanges = e => {
+    this.setState({
+      ...this.state,
+      // x: this.state.x,
+      // y: this.state.y,
+      // steps: this.state.steps,
+      email: e.target.value
+    })
+    console.log('first x', this.state.x)
+    console.log('first y', this.state.y)
+    console.log('first steps', this.state.steps)
+    console.log('first email', e.target.value)
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    axios.post(URL, {
+      x: this.state.x,
+      y: this.state.y,
+      steps: this.state.steps,
+      email: this.state.email,
+    })
+    .then(res => {
+      // console.log("res", res)
+      this.setState({
+        ...this.state,
+        message: res.data.message
+      })
+    })
+    this.setState({
+      email: ''
+    })
+
+    // this.submitState(e, this.state.x, this.state.y, this.state.steps, this.state.email);
+    // this.setState({
+    //   email: ''
+    // })
+  }
+
+  // axios submiter
+  // submitState = (e, item1, item2, item3, item4) => {
+  //   axios.post(URL, {
+  //     x: item1,
+  //     y: item2,
+  //     steps: item3,
+  //     email: item4,
+  //   })
+  //   .then(res => {
+  //     // console.log("res", res)
+  //     this.setState({
+  //       ...this.state,
+  //       message: res.data.message
+  //     })
+  //   })
+  //   console.log("x", item1)
+  //   console.log("y", item2)
+  //   console.log("steps", item3)
+  //   console.log("email", item4)
+  //   //console.log("state of X", x, "state of Y", y, "state of steps", steps, "state of email", email) 
   // }
 
-  // toggleClass = (active) => {
-  //  if(active === 'B') {
-  //    this.setState({
-  //     ...this.state,
-  //     className: "active square"
-  //    })
-  //  }
-  // }
 
-  // handleMoves = (idx) => {
-  //   console.log(idx);
-  // }
 
   render() {
     // this was given in project
@@ -335,8 +387,8 @@ export default class AppClass extends React.Component {
     return (
       <div id="wrapper" className={className}>
         <div className="info">
-          <h3 id="coordinates">{`Coordinates (${this.state.currentCoordinate1}, ${this.state.currentCoordinate2})`}</h3>
-          <h3 id="steps">{`You moved ${this.state.totalMoves} times`}</h3>
+          <h3 id="coordinates">{`Coordinates (${this.state.x}, ${this.state.y})`}</h3>
+          <h3 id="steps">{`You moved ${this.state.steps} times`}</h3>
         </div>
         <div id="grid">
           {this.state.board.map((active, idx) => { //map over state that creates the grid
@@ -385,9 +437,15 @@ export default class AppClass extends React.Component {
           })}
           {/* <button id="reset">reset</button> */}
         </div>
-        <form>
-          <input id="email" type="email" placeholder="type email"></input>
-          <input id="submit" type="submit"></input>
+        <form onSubmit={this.handleSubmit}>
+          <input 
+            id="email" 
+            value={this.state.email}
+            type="email" 
+            placeholder="type email"
+            onChange={this.handleChanges}>
+            </input>
+          <input id="submit" type="submit" onClick={this.submitState}></input>
         </form>
       </div>
     )
