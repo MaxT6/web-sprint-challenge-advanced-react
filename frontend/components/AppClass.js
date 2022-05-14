@@ -4,12 +4,12 @@ import axios from 'axios';
 const URL = 'http://localhost:9000/api/result'
 
 export default class AppClass extends React.Component {
-  //state for class App
+  //Inital state for AppClass
   state = {
     x: 2,
     y: 2,
     steps: 0,
-    board: ['', '', '', '', 'B', '', '', '', '',],
+    grid: ['', '', '', '', 'B', '', '', '', '',],
     message: '',
     className: "square",
     email: '',
@@ -17,66 +17,65 @@ export default class AppClass extends React.Component {
 
 //function for changing state with left button is clicked
   handleLeft = (val) => {
-    console.log('board', val)
-    if(this.state.board[1] === 'B') {
+    // console.log('grid', val)
+    if(this.state.grid[1] === 'B') {
       this.setState({
         ...this.state,
-        board: ['B', '', '', '', '', '', '', '', '',],
+        grid: ['B', '', '', '', '', '', '', '', '',],
         message: '',
         x: 1,
         y: 1,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[2] === 'B') {
+    } else if (this.state.grid[2] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', 'B', '', '', '', '', '', '', '',],
+        grid: ['', 'B', '', '', '', '', '', '', '',],
         message: '',
         x: 2,
         y: 1,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[4] === 'B') {
+    } else if (this.state.grid[4] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', 'B', '', '', '', '', '',],
+        grid: ['', '', '', 'B', '', '', '', '', '',],
         message: '',
         x: 1,
         y: 2,
         steps: this.state.steps + 1
-        // className: true
       })
-    } else if (this.state.board[5] === 'B') {
+    } else if (this.state.grid[5] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', '', 'B', '', '', '', '',],
+        grid: ['', '', '', '', 'B', '', '', '', '',],
         message: '',
         x: 2,
         y: 2,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[7] === 'B') {
+    } else if (this.state.grid[7] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', '', '', '', 'B', '', '',],
+        grid: ['', '', '', '', '', '', 'B', '', '',],
         message: '',
         x: 1,
         y: 3,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[8] === 'B') {
+    } else if (this.state.grid[8] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', '', '', '', '', 'B', '',],
+        grid: ['', '', '', '', '', '', '', 'B', '',],
         message: '',
         x: 2,
         y: 3,
         steps: this.state.steps + 1
       })
     } else if (
-      this.state.board[0] === 'B' ||
-      this.state.board[3] === 'B' ||
-      this.state.board[6] === 'B'
+      this.state.grid[0] === 'B' ||
+      this.state.grid[3] === 'B' ||
+      this.state.grid[6] === 'B'
       ) {
       this.setState({
         ...this.state,
@@ -87,65 +86,65 @@ export default class AppClass extends React.Component {
 
 //function for changing state with right button is clicked
   handleRight = (val) => {
-    console.log('board', val)
-    if(this.state.board[0] === 'B') {
+    // console.log('grid', val)
+    if(this.state.grid[0] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', 'B', '', '', '', '', '', '', '',],
+        grid: ['', 'B', '', '', '', '', '', '', '',],
         message: '',
         x: 2,
         y: 1,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[1] === 'B') {
+    } else if (this.state.grid[1] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', 'B', '', '', '', '', '', '',],
+        grid: ['', '', 'B', '', '', '', '', '', '',],
         message: '',
         x: 3,
         y: 1,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[3] === 'B') {
+    } else if (this.state.grid[3] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', '', 'B', '', '', '', '',],
+        grid: ['', '', '', '', 'B', '', '', '', '',],
         message: '',
         x: 2,
         y: 2,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[4] === 'B') {
+    } else if (this.state.grid[4] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', '', '', 'B', '', '', '',],
+        grid: ['', '', '', '', '', 'B', '', '', '',],
         message: '',
         x: 3,
         y: 2,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[6] === 'B') {
+    } else if (this.state.grid[6] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', '', '', '', '', 'B', '',],
+        grid: ['', '', '', '', '', '', '', 'B', '',],
         message: '',
         x: 2,
         y: 3,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[7] === 'B') {
+    } else if (this.state.grid[7] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', '', '', '', '', '', 'B',],
+        grid: ['', '', '', '', '', '', '', '', 'B',],
         message: '',
         x: 3,
         y: 3,
         steps: this.state.steps + 1
       })
     } else if (
-      this.state.board[2] === 'B' ||
-      this.state.board[5] === 'B' ||
-      this.state.board[8] === 'B'
+      this.state.grid[2] === 'B' ||
+      this.state.grid[5] === 'B' ||
+      this.state.grid[8] === 'B'
       ) {
       this.setState({
         ...this.state,
@@ -156,65 +155,65 @@ export default class AppClass extends React.Component {
 
 //function for changing state with up button is clicked
   handleUp = (val) => {
-    console.log('board', val)
-    if(this.state.board[3] === 'B') {
+    // console.log('grid', val)
+    if(this.state.grid[3] === 'B') {
       this.setState({
         ...this.state,
-        board: ['B', '', '', '', '', '', '', '', '',],
+        grid: ['B', '', '', '', '', '', '', '', '',],
         message: '',
         x: 1,
         y: 1,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[4] === 'B') {
+    } else if (this.state.grid[4] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', 'B', '', '', '', '', '', '', '',],
+        grid: ['', 'B', '', '', '', '', '', '', '',],
         message: '',
         x: 2,
         y: 1,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[5] === 'B') {
+    } else if (this.state.grid[5] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', 'B', '', '', '', '', '', '',],
+        grid: ['', '', 'B', '', '', '', '', '', '',],
         message: '',
         x: 3,
         y: 1,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[6] === 'B') {
+    } else if (this.state.grid[6] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', 'B', '', '', '', '', '',],
+        grid: ['', '', '', 'B', '', '', '', '', '',],
         message: '',
         x: 1,
         y: 2,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[7] === 'B') {
+    } else if (this.state.grid[7] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', '', 'B', '', '', '', '',],
+        grid: ['', '', '', '', 'B', '', '', '', '',],
         message: '',
         x: 2,
         y: 2,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[8] === 'B') {
+    } else if (this.state.grid[8] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', '', '', 'B', '', '', '',],
+        grid: ['', '', '', '', '', 'B', '', '', '',],
         message: '',
         x: 3,
         y: 2,
         steps: this.state.steps + 1
       })
     } else if (
-      this.state.board[0] === 'B' ||
-      this.state.board[1] === 'B' ||
-      this.state.board[2] === 'B'
+      this.state.grid[0] === 'B' ||
+      this.state.grid[1] === 'B' ||
+      this.state.grid[2] === 'B'
       ) {
       this.setState({
         ...this.state,
@@ -225,65 +224,65 @@ export default class AppClass extends React.Component {
 
 //function for changing state with down button is clicked
   handleDown = (val) => {
-    console.log('board', val)
-    if(this.state.board[0] === 'B') {
+    // console.log('grid', val)
+    if(this.state.grid[0] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', 'B', '', '', '', '', '',],
+        grid: ['', '', '', 'B', '', '', '', '', '',],
         message: '',
         x: 1,
         y: 2,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[1] === 'B') {
+    } else if (this.state.grid[1] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', '', 'B', '', '', '', '',],
+        grid: ['', '', '', '', 'B', '', '', '', '',],
         message: '',
         x: 2,
         y: 2,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[2] === 'B') {
+    } else if (this.state.grid[2] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', '', '', 'B', '', '', '',],
+        grid: ['', '', '', '', '', 'B', '', '', '',],
         message: '',
         x: 3,
         y: 2,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[3] === 'B') {
+    } else if (this.state.grid[3] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', '', '', '', 'B', '', '',],
+        grid: ['', '', '', '', '', '', 'B', '', '',],
         message: '',
         x: 1,
         y: 3,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[4] === 'B') {
+    } else if (this.state.grid[4] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', '', '', '', '', 'B', '',],
+        grid: ['', '', '', '', '', '', '', 'B', '',],
         message: '',
         x: 2,
         y: 3,
         steps: this.state.steps + 1
       })
-    } else if (this.state.board[5] === 'B') {
+    } else if (this.state.grid[5] === 'B') {
       this.setState({
         ...this.state,
-        board: ['', '', '', '', '', '', '', '', 'B',],
+        grid: ['', '', '', '', '', '', '', '', 'B',],
         message: '',
         x: 3,
         y: 3,
         steps: this.state.steps + 1
       })
     } else if (
-      this.state.board[6] === 'B' ||
-      this.state.board[7] === 'B' ||
-      this.state.board[8] === 'B'
+      this.state.grid[6] === 'B' ||
+      this.state.grid[7] === 'B' ||
+      this.state.grid[8] === 'B'
       ) {
       this.setState({
         ...this.state,
@@ -296,7 +295,7 @@ export default class AppClass extends React.Component {
   handleReset = () => {
     this.setState({
       ...this.state,
-      board: ['', '', '', '', 'B', '', '', '', '',],
+      grid: ['', '', '', '', 'B', '', '', '', '',],
       message: '',
       x: 2,
       y: 2,
@@ -305,69 +304,45 @@ export default class AppClass extends React.Component {
     })
   }  
 
-
-  
-
-  //axios get
-  // componentDidMount() {
-  //   axios.get(URL)
-  //   .then(res => {
-  //     console.log("GET RES", res)
-  //   })
-  // }
-
-    
-
-
+  //assigns value of email input to email state key (logs are to check payload)
   handleChanges = e => {
     this.setState({
       ...this.state,
-      // x: this.state.x,
-      // y: this.state.y,
-      // steps: this.state.steps,
       email: e.target.value
     })
-    console.log('first x', this.state.x)
-    console.log('first y', this.state.y)
-    console.log('first steps', this.state.steps)
-    console.log('first email', e.target.value)
+    // console.log('first x', this.state.x)
+    // console.log('first y', this.state.y)
+    // console.log('first steps', this.state.steps)
+    // console.log('first email', e.target.value)
   }
 
+  //prevents default while submitting payload to API endpoint
   handleSubmit = e => {
     e.preventDefault();
-    // if(this.state.email === "") {
-    //   this.setState({
-    //     ...this.state,
-    //     message: "Ouch: email is required"
-    //   })
-    // } else{
-        axios.post(URL, {
-        x: this.state.x,
-        y: this.state.y,
-        steps: this.state.steps,
-        email: this.state.email,
-        })
-      .then(res => {
-      // console.log("res", res)
-      this.setState({
-        ...this.state,
-        message: res.data.message
-        })
+      axios.post(URL, {
+      x: this.state.x,
+      y: this.state.y,
+      steps: this.state.steps,
+      email: this.state.email,
       })
-      .catch(err => {
-        //console.error(err.response.data.message, "error")
-        this.setState({
-          ...this.state,
-          message: err.response.data.message
-          })
-      })
-      this.setState({
+    .then(res => {
+    // console.log("res", res)
+    this.setState({
       ...this.state,
+      message: res.data.message,
       email: ''
       })
-    // }
+    })
+    .catch(err => {
+      //console.error(err.response.data.message, "error")
+      this.setState({
+        ...this.state,
+        message: err.response.data.message
+      })
+    })
   }
 
+  //changes the word 'times' to 'time' on move counter when counter is equal to 1 move.
   moveMessage = () => {
     if(this.state.steps === 1) {
       return(
@@ -378,32 +353,8 @@ export default class AppClass extends React.Component {
     }
   }
 
-  // axios submiter
-  // submitState = (e, item1, item2, item3, item4) => {
-  //   axios.post(URL, {
-  //     x: item1,
-  //     y: item2,
-  //     steps: item3,
-  //     email: item4,
-  //   })
-  //   .then(res => {
-  //     // console.log("res", res)
-  //     this.setState({
-  //       ...this.state,
-  //       message: res.data.message
-  //     })
-  //   })
-  //   console.log("x", item1)
-  //   console.log("y", item2)
-  //   console.log("steps", item3)
-  //   console.log("email", item4)
-  //   //console.log("state of X", x, "state of Y", y, "state of steps", steps, "state of email", email) 
-  // }
-
-
 
   render() {
-    // this was given in project
     const { className } = this.props
     return (
       <div id="wrapper" className={className}>
@@ -412,51 +363,44 @@ export default class AppClass extends React.Component {
           <h3 id="steps">{this.moveMessage(this.state.steps)}</h3>
         </div>
         <div id="grid">
-          {this.state.board.map((active, idx) => { //map over state that creates the grid
+          {this.state.grid.map((active, idx) => { //map over state that creates the grid
             return (
               <div 
                 key={idx}
                 className={`${active ? 'active square' : 'square'}`}> 
                   {active}
-                  {console.log('active', active)}
+                  {/* {console.log('active', active)} */}
             </div>)
           })}
-          {/* <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square active">B</div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div> */}
         </div>
         <div className="info">
           <h3 id="message">{this.state.message}</h3>
         </div>
         <div id="keypad">
-          {this.state.board.map((val, idx) => {
+          {this.state.grid.map((val, idx) => {
             return (<button id="left" key={idx} onClick={() => this.handleLeft(val)}>LEFT</button>)
           })}
+          {/*Above is LEFT button */}
 
-          {this.state.board.map((val, idx) => {
+          {this.state.grid.map((val, idx) => {
             return (<button id="up" key={idx} onClick={() => this.handleUp(val)}>UP</button>)
           })}
-          {/* <button id="up">UP</button> */}
+          {/*Above is UP button */}
 
-          {this.state.board.map((val, idx) => {
+          {this.state.grid.map((val, idx) => {
             return (<button id="right" key={idx} onClick={() => this.handleRight(val)}>RIGHT</button>)
           })}
-          {/* <button id="right">RIGHT</button> */}
+          {/*Above is RIGHT button */}
 
-          {this.state.board.map((val, idx) => {
+          {this.state.grid.map((val, idx) => {
             return (<button id="down" key={idx} onClick={() => this.handleDown(val)}>DOWN</button>)
           })}
-          {/* <button id="down">DOWN</button> */}
-          {this.state.board.map((val, idx) => {
+          {/*Above is DOWN button */}
+
+          {this.state.grid.map((val, idx) => {
             return (<button id="reset" key={idx} onClick={() => this.handleReset(val)}>reset</button>)
           })}
-          {/* <button id="reset">reset</button> */}
+          {/*Above is RESET button */}
         </div>
         <form onSubmit={this.handleSubmit}>
           <input 
@@ -472,18 +416,3 @@ export default class AppClass extends React.Component {
     )
   }
 }
-
-
-
-//   } else {
-    //     this.setState({
-    //       ...this.state,
-    //       board: ['', '', '', '', '', '', '', '', '',]
-    //   })
-    // }
-
-// board[idx] === 2 || 
-//           board[idx] === 4 || 
-//           board[idx] === 5 || 
-//           board[idx] === 7 || 
-//           board[idx] === 8 ||

@@ -4,12 +4,12 @@ import axios from 'axios';
 const URL = 'http://localhost:9000/api/result'
 
 export default function AppFunctional(props) {
-
+//Inital state for AppFunctional
   const [state, setState] = useState({
     x: 2,
     y: 2,
     steps: 0,
-    board: ['', '', '', '', 'B', '', '', '', '',],
+    grid: ['', '', '', '', 'B', '', '', '', '',],
     message: '',
     className: "square",
     email: " "
@@ -17,66 +17,65 @@ export default function AppFunctional(props) {
 
   //function for changing state with left button is clicked
   const handleLeft = (val) => {
-    console.log('board', val)
-    if(state.board[1] === 'B') {
+    // console.log('grid', val)
+    if(state.grid[1] === 'B') {
       setState({
         ...state,
-        board: ['B', '', '', '', '', '', '', '', '',],
+        grid: ['B', '', '', '', '', '', '', '', '',],
         message: '',
         x: 1,
         y: 1,
         steps: state.steps + 1
       })
-    } else if (state.board[2] === 'B') {
+    } else if (state.grid[2] === 'B') {
       setState({
         ...state,
-        board: ['', 'B', '', '', '', '', '', '', '',],
+        grid: ['', 'B', '', '', '', '', '', '', '',],
         message: '',
         x: 2,
         y: 1,
         steps: state.steps + 1
       })
-    } else if (state.board[4] === 'B') {
+    } else if (state.grid[4] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', 'B', '', '', '', '', '',],
+        grid: ['', '', '', 'B', '', '', '', '', '',],
         message: '',
         x: 1,
         y: 2,
         steps: state.steps + 1
-        // className: true
       })
-    } else if (state.board[5] === 'B') {
+    } else if (state.grid[5] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', '', 'B', '', '', '', '',],
+        grid: ['', '', '', '', 'B', '', '', '', '',],
         message: '',
         x: 2,
         y: 2,
         steps: state.steps + 1
       })
-    } else if (state.board[7] === 'B') {
+    } else if (state.grid[7] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', '', '', '', 'B', '', '',],
+        grid: ['', '', '', '', '', '', 'B', '', '',],
         message: '',
         x: 1,
         y: 3,
         steps: state.steps + 1
       })
-    } else if (state.board[8] === 'B') {
+    } else if (state.grid[8] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', '', '', '', '', 'B', '',],
+        grid: ['', '', '', '', '', '', '', 'B', '',],
         message: '',
         x: 2,
         y: 3,
         steps: state.steps + 1
       })
     } else if (
-      state.board[0] === 'B' ||
-      state.board[3] === 'B' ||
-      state.board[6] === 'B'
+      state.grid[0] === 'B' ||
+      state.grid[3] === 'B' ||
+      state.grid[6] === 'B'
       ) {
       setState({
         ...state,
@@ -87,65 +86,65 @@ export default function AppFunctional(props) {
 
   //function for changing state with right button is clicked
   const handleRight = (val) => {
-    console.log('board', val)
-    if(state.board[0] === 'B') {
+    // console.log('grid', val)
+    if(state.grid[0] === 'B') {
       setState({
         ...state,
-        board: ['', 'B', '', '', '', '', '', '', '',],
+        grid: ['', 'B', '', '', '', '', '', '', '',],
         message: '',
         x: 2,
         y: 1,
         steps: state.steps + 1
       })
-    } else if (state.board[1] === 'B') {
+    } else if (state.grid[1] === 'B') {
       setState({
         ...state,
-        board: ['', '', 'B', '', '', '', '', '', '',],
+        grid: ['', '', 'B', '', '', '', '', '', '',],
         message: '',
         x: 3,
         y: 1,
         steps: state.steps + 1
       })
-    } else if (state.board[3] === 'B') {
+    } else if (state.grid[3] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', '', 'B', '', '', '', '',],
+        grid: ['', '', '', '', 'B', '', '', '', '',],
         message: '',
         x: 2,
         y: 2,
         steps: state.steps + 1
       })
-    } else if (state.board[4] === 'B') {
+    } else if (state.grid[4] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', '', '', 'B', '', '', '',],
+        grid: ['', '', '', '', '', 'B', '', '', '',],
         message: '',
         x: 3,
         y: 2,
         steps: state.steps + 1
       })
-    } else if (state.board[6] === 'B') {
+    } else if (state.grid[6] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', '', '', '', '', 'B', '',],
+        grid: ['', '', '', '', '', '', '', 'B', '',],
         message: '',
         x: 2,
         y: 3,
         steps: state.steps + 1
       })
-    } else if (state.board[7] === 'B') {
+    } else if (state.grid[7] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', '', '', '', '', '', 'B',],
+        grid: ['', '', '', '', '', '', '', '', 'B',],
         message: '',
         x: 3,
         y: 3,
         steps: state.steps + 1
       })
     } else if (
-      state.board[2] === 'B' ||
-      state.board[5] === 'B' ||
-      state.board[8] === 'B'
+      state.grid[2] === 'B' ||
+      state.grid[5] === 'B' ||
+      state.grid[8] === 'B'
       ) {
       setState({
         ...state,
@@ -156,65 +155,65 @@ export default function AppFunctional(props) {
 
   //function for changing state with up button is clicked
   const handleUp = (val) => {
-    console.log('board', val)
-    if(state.board[3] === 'B') {
+    // console.log('grid', val)
+    if(state.grid[3] === 'B') {
       setState({
         ...state,
-        board: ['B', '', '', '', '', '', '', '', '',],
+        grid: ['B', '', '', '', '', '', '', '', '',],
         message: '',
         x: 1,
         y: 1,
         steps: state.steps + 1
       })
-    } else if (state.board[4] === 'B') {
+    } else if (state.grid[4] === 'B') {
       setState({
         ...state,
-        board: ['', 'B', '', '', '', '', '', '', '',],
+        grid: ['', 'B', '', '', '', '', '', '', '',],
         message: '',
         x: 2,
         y: 1,
         steps: state.steps + 1
       })
-    } else if (state.board[5] === 'B') {
+    } else if (state.grid[5] === 'B') {
       setState({
         ...state,
-        board: ['', '', 'B', '', '', '', '', '', '',],
+        grid: ['', '', 'B', '', '', '', '', '', '',],
         message: '',
         x: 3,
         y: 1,
         steps: state.steps + 1
       })
-    } else if (state.board[6] === 'B') {
+    } else if (state.grid[6] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', 'B', '', '', '', '', '',],
+        grid: ['', '', '', 'B', '', '', '', '', '',],
         message: '',
         x: 1,
         y: 2,
         steps: state.steps + 1
       })
-    } else if (state.board[7] === 'B') {
+    } else if (state.grid[7] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', '', 'B', '', '', '', '',],
+        grid: ['', '', '', '', 'B', '', '', '', '',],
         message: '',
         x: 2,
         y: 2,
         steps: state.steps + 1
       })
-    } else if (state.board[8] === 'B') {
+    } else if (state.grid[8] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', '', '', 'B', '', '', '',],
+        grid: ['', '', '', '', '', 'B', '', '', '',],
         message: '',
         x: 3,
         y: 2,
         steps: state.steps + 1
       })
     } else if (
-      state.board[0] === 'B' ||
-      state.board[1] === 'B' ||
-      state.board[2] === 'B'
+      state.grid[0] === 'B' ||
+      state.grid[1] === 'B' ||
+      state.grid[2] === 'B'
       ) {
       setState({
         ...state,
@@ -225,65 +224,65 @@ export default function AppFunctional(props) {
 
   //function for changing state with down button is clicked
   const handleDown = (val) => {
-    console.log('board', val)
-    if(state.board[0] === 'B') {
+    // console.log('grid', val)
+    if(state.grid[0] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', 'B', '', '', '', '', '',],
+        grid: ['', '', '', 'B', '', '', '', '', '',],
         message: '',
         x: 1,
         y: 2,
         steps: state.steps + 1
       })
-    } else if (state.board[1] === 'B') {
+    } else if (state.grid[1] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', '', 'B', '', '', '', '',],
+        grid: ['', '', '', '', 'B', '', '', '', '',],
         message: '',
         x: 2,
         y: 2,
         steps: state.steps + 1
       })
-    } else if (state.board[2] === 'B') {
+    } else if (state.grid[2] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', '', '', 'B', '', '', '',],
+        grid: ['', '', '', '', '', 'B', '', '', '',],
         message: '',
         x: 3,
         y: 2,
         steps: state.steps + 1
       })
-    } else if (state.board[3] === 'B') {
+    } else if (state.grid[3] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', '', '', '', 'B', '', '',],
+        grid: ['', '', '', '', '', '', 'B', '', '',],
         message: '',
         x: 1,
         y: 3,
         steps: state.steps + 1
       })
-    } else if (state.board[4] === 'B') {
+    } else if (state.grid[4] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', '', '', '', '', 'B', '',],
+        grid: ['', '', '', '', '', '', '', 'B', '',],
         message: '',
         x: 2,
         y: 3,
         steps: state.steps + 1
       })
-    } else if (state.board[5] === 'B') {
+    } else if (state.grid[5] === 'B') {
       setState({
         ...state,
-        board: ['', '', '', '', '', '', '', '', 'B',],
+        grid: ['', '', '', '', '', '', '', '', 'B',],
         message: '',
         x: 3,
         y: 3,
         steps: state.steps + 1
       })
     } else if (
-      state.board[6] === 'B' ||
-      state.board[7] === 'B' ||
-      state.board[8] === 'B'
+      state.grid[6] === 'B' ||
+      state.grid[7] === 'B' ||
+      state.grid[8] === 'B'
       ) {
       setState({
         ...state,
@@ -296,7 +295,7 @@ export default function AppFunctional(props) {
   const handleReset = () => {
     setState({
       ...state,
-      board: ['', '', '', '', 'B', '', '', '', '',],
+      grid: ['', '', '', '', 'B', '', '', '', '',],
       message: '',
       x: 2,
       y: 2,
@@ -305,49 +304,42 @@ export default function AppFunctional(props) {
     })
   }  
 
+  //assigns value of email input to email state key (logs are to check payload)
   const handleChanges = e => {
     setState({
       ...state,
-      // x: state.x,
-      // y: state.y,
-      // steps: state.steps,
       email: e.target.value
     })
-    console.log('first x', state.x)
-    console.log('first y', state.y)
-    console.log('first steps', state.steps)
-    console.log('first email', e.target.value)
+    // console.log('first x', state.x)
+    // console.log('first y', state.y)
+    // console.log('first steps', state.steps)
+    // console.log('first email', e.target.value)
   }
 
+  //prevents default while submitting payload to API endpoint
   const handleSubmit = e => {
     e.preventDefault()
-    // if(state.email === "") {
-    //   setState({
-    //     ...state,
-    //     message: "Ouch: email is required"
-    //   })
-    // } else {
-        axios.post(URL, {
-        x: state.x,
-        y: state.y,
-        steps: state.steps,
-        email: state.email,
-        })
-      .then(res => {
-      // console.log("res", res)
-        setState({
-          ...state,
-          message: res.data.message,
-          email: '',
-        })
+      axios.post(URL, {
+      x: state.x,
+      y: state.y,
+      steps: state.steps,
+      email: state.email,
       })
-      .catch(err => {
-        setState({
-          ...state,
-          message: err.response.data.message
-          })
+    .then(res => {
+    // console.log("res", res)
+      setState({
+        ...state,
+        message: res.data.message,
+        email: '',
       })
-    //}
+    })
+    .catch(err => {
+      //console.error(err.response.data.message, "error")
+      setState({
+        ...state,
+        message: err.response.data.message
+        })
+    })
   }
 
   const moveMessage = () => {
@@ -369,51 +361,44 @@ export default function AppFunctional(props) {
           <h3 id="steps">{moveMessage(state.steps)}</h3>
         </div>
         <div id="grid">
-          {state.board.map((active, idx) => { //map over state that creates the grid
+          {state.grid.map((active, idx) => { //map over state that creates the grid
             return (
               <div 
                 key={idx}
                 className={`${active ? 'active square' : 'square'}`}> 
                   {active}
-                  {console.log('active', active)}
+                  {/* {console.log('active', active)} */}
             </div>)
           })}
-          {/* <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square active">B</div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div> */}
         </div>
         <div className="info">
           <h3 id="message">{state.message}</h3>
         </div>
         <div id="keypad">
-          {state.board.map((val, idx) => {
+          {state.grid.map((val, idx) => {
             return (<button id="left" key={idx} onClick={() => handleLeft(val)}>LEFT</button>)
           })}
+          {/*Above is LEFT button */}
 
-          {state.board.map((val, idx) => {
+          {state.grid.map((val, idx) => {
             return (<button id="up" key={idx} onClick={() => handleUp(val)}>UP</button>)
           })}
-          {/* <button id="up">UP</button> */}
+          {/*Above is UP button */}
 
-          {state.board.map((val, idx) => {
+          {state.grid.map((val, idx) => {
             return (<button id="right" key={idx} onClick={() => handleRight(val)}>RIGHT</button>)
           })}
-          {/* <button id="right">RIGHT</button> */}
+          {/*Above is RIGHT button */}
 
-          {state.board.map((val, idx) => {
+          {state.grid.map((val, idx) => {
             return (<button id="down" key={idx} onClick={() => handleDown(val)}>DOWN</button>)
           })}
-          {/* <button id="down">DOWN</button> */}
-          {state.board.map((val, idx) => {
+          {/*Above is DOWN button */}
+
+          {state.grid.map((val, idx) => {
             return (<button id="reset" key={idx} onClick={() => handleReset(val)}>reset</button>)
           })}
-          {/* <button id="reset">reset</button> */}
+          {/*Above is RESET button */}
         </div>
         <form onSubmit={handleSubmit}>
           <input 
